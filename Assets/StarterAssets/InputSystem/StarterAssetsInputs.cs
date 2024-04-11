@@ -18,45 +18,44 @@ namespace StarterAssets
         public bool cursorLocked = true;
         public bool cursorInputForLook = true;
 
-        public void OnMove(InputValue value)
+        public void OnMove(InputAction.CallbackContext context)
         {
-            MoveInput(value.Get<Vector2>());
+            MoveInput(context.ReadValue<Vector2>());
         }
 
-        public void OnLook(InputValue value)
+        public void OnLook(InputAction.CallbackContext context)
         {
-            if (cursorInputForLook)
-            {
-                LookInput(value.Get<Vector2>());
-            }
+            LookInput(context.ReadValue<Vector2>());
         }
 
-        public void OnJump(InputValue value)
+        public void OnJump(InputAction.CallbackContext context)
         {
-            JumpInput(value.isPressed);
+            JumpInput(context.ReadValueAsButton());
         }
 
-        public void OnSprint(InputValue value)
+        public void OnSprint(InputAction.CallbackContext context)
         {
-            SprintInput(value.isPressed);
+            SprintInput(context.ReadValueAsButton());
         }
 
-        public void MoveInput(Vector2 newMoveDirection)
+        //-------------------------
+
+        private void MoveInput(Vector2 newMoveDirection)
         {
             move = newMoveDirection;
         }
 
-        public void LookInput(Vector2 newLookDirection)
+        private void LookInput(Vector2 newLookDirection)
         {
             look = newLookDirection;
         }
 
-        public void JumpInput(bool newJumpState)
+        private void JumpInput(bool newJumpState)
         {
             jump = newJumpState;
         }
 
-        public void SprintInput(bool newSprintState)
+        private void SprintInput(bool newSprintState)
         {
             sprint = newSprintState;
         }
