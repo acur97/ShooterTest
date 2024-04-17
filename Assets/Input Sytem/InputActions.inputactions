@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "04978b97-1f45-4567-bdf8-fffcf6812b02",
@@ -45,6 +36,15 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "d5b71663-c028-4877-8039-b07c3069d5b3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -275,7 +275,7 @@
                 {
                     "name": "",
                     "id": "44ba7cb9-4325-424a-8bad-df0155384143",
-                    "path": "",
+                    "path": "<Joystick>/{SecondaryTrigger}",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",

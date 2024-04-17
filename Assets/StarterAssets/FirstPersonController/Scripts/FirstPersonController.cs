@@ -54,17 +54,16 @@ namespace StarterAssets
         private float _speed;
         private float _rotationVelocity;
         private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
+        private readonly float _terminalVelocity = 53.0f;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
-
-        private PlayerInput _playerInput;
-        private CharacterController _controller;
-        private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        [Header("Components")]
+        [SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private CharacterController _controller;
+        [SerializeField] private PlayerInputActions _input;
 
         private const float _threshold = 0.01f;
 
@@ -76,21 +75,8 @@ namespace StarterAssets
             }
         }
 
-        private void Awake()
-        {
-            // get a reference to our main camera
-            if (_mainCamera == null)
-            {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            }
-        }
-
         private void Start()
         {
-            _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
-            _playerInput = GetComponent<PlayerInput>();
-
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -111,7 +97,7 @@ namespace StarterAssets
         private void GroundedCheck()
         {
             // set sphere position, with offset
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+            Vector3 spherePosition = new(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
         }
 
@@ -234,18 +220,24 @@ namespace StarterAssets
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
-            if (lfAngle < -360f) lfAngle += 360f;
-            if (lfAngle > 360f) lfAngle -= 360f;
+            if (lfAngle < -360f)
+                lfAngle += 360f;
+
+            if (lfAngle > 360f)
+                lfAngle -= 360f;
+
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
 
         private void OnDrawGizmosSelected()
         {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
+            Color transparentGreen = new(0.0f, 1.0f, 0.0f, 0.35f);
+            Color transparentRed = new(1.0f, 0.0f, 0.0f, 0.35f);
 
-            if (Grounded) Gizmos.color = transparentGreen;
-            else Gizmos.color = transparentRed;
+            if (Grounded)
+                Gizmos.color = transparentGreen;
+            else
+                Gizmos.color = transparentRed;
 
             // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
             Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);

@@ -49,15 +49,6 @@ namespace UnityEngine.InputSystem
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""04978b97-1f45-4567-bdf8-fffcf6812b02"",
@@ -70,6 +61,15 @@ namespace UnityEngine.InputSystem
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""d5b71663-c028-4877-8039-b07c3069d5b3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -300,7 +300,7 @@ namespace UnityEngine.InputSystem
                 {
                     ""name"": """",
                     ""id"": ""44ba7cb9-4325-424a-8bad-df0155384143"",
-                    ""path"": """",
+                    ""path"": ""<Joystick>/{SecondaryTrigger}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
@@ -845,9 +845,9 @@ namespace UnityEngine.InputSystem
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -926,18 +926,18 @@ namespace UnityEngine.InputSystem
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint;
+        private readonly InputAction m_Player_Fire;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+            public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -953,15 +953,15 @@ namespace UnityEngine.InputSystem
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -972,15 +972,15 @@ namespace UnityEngine.InputSystem
                 @Look.started -= instance.OnLook;
                 @Look.performed -= instance.OnLook;
                 @Look.canceled -= instance.OnLook;
-                @Fire.started -= instance.OnFire;
-                @Fire.performed -= instance.OnFire;
-                @Fire.canceled -= instance.OnFire;
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
                 @Sprint.started -= instance.OnSprint;
                 @Sprint.performed -= instance.OnSprint;
                 @Sprint.canceled -= instance.OnSprint;
+                @Fire.started -= instance.OnFire;
+                @Fire.performed -= instance.OnFire;
+                @Fire.canceled -= instance.OnFire;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1123,9 +1123,9 @@ namespace UnityEngine.InputSystem
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
+            void OnFire(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

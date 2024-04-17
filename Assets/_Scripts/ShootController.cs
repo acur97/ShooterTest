@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class ShootController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        PlayerInputActions.OnFireInput += OnFire;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnFire(bool isPressed)
     {
-        
+        Debug.LogWarning("OnFire: " + isPressed);
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputActions.OnFireInput -= OnFire;
     }
 }
