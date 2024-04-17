@@ -1010,12 +1010,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1737628719
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,6 +4061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c82525f6e9d3d449df7849bb6e63aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitScanRange: 100
+  root: {fileID: 8338988565591873055}
 --- !u!114 &5885216829670671797
 MonoBehaviour:
   m_ObjectHideFlags: 0
