@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "2e225fb8414e023df2aa3acae2ef225471981316"
+      "hash": "fbe0bf85155f42f8832205f7b3ac3df571ada33e"
     },
     "com.febucci.custom-hierarchy": {
       "version": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
@@ -31,7 +31,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.13",
+      "version": "1.8.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -104,7 +104,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.8.1",
+      "version": "1.8.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -148,7 +148,7 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "17.0.2",
+      "version": "17.0.3",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -201,7 +201,7 @@
       }
     },
     "com.unity.splines": {
-      "version": "2.5.2",
+      "version": "2.6.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
