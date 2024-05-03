@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using UnityEngine;
 
 public class ShootController : MonoBehaviour
@@ -19,7 +20,7 @@ public class ShootController : MonoBehaviour
 
     private void OnFire(bool isPressed)
     {
-        Debug.LogWarning("OnFire: " + isPressed);
+        Debug.LogWarning(ZString.Concat("OnFire: ", isPressed));
     }
 
     private void OnDisable()

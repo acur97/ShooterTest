@@ -132,7 +132,8 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.move == Vector2.zero)
+                targetSpeed = 0.0f;
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -231,13 +232,10 @@ namespace StarterAssets
 
         private void OnDrawGizmosSelected()
         {
-            Color transparentGreen = new(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new(1.0f, 0.0f, 0.0f, 0.35f);
-
             if (Grounded)
-                Gizmos.color = transparentGreen;
+                Gizmos.color = new(0.0f, 1.0f, 0.0f, 0.35f);
             else
-                Gizmos.color = transparentRed;
+                Gizmos.color = new(1.0f, 0.0f, 0.0f, 0.35f);
 
             // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
             Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
