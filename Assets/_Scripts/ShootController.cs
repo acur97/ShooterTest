@@ -1,4 +1,3 @@
-using Cysharp.Text;
 using UnityEngine;
 
 public class ShootController : MonoBehaviour
@@ -6,6 +5,9 @@ public class ShootController : MonoBehaviour
     [Header("Hitscan")]
     [SerializeField] private float hitScanRange = 100f;
     [SerializeField] private Transform root;
+    [SerializeField] private LayerMask layerMask;
+
+    private bool hit = false;
 
     private void OnDrawGizmos()
     {
@@ -18,9 +20,14 @@ public class ShootController : MonoBehaviour
         PlayerInputActions.OnFireInput += OnFire;
     }
 
-    private void OnFire(bool isPressed)
+    private void OnFire()
     {
-        Debug.LogWarning(ZString.Concat("OnFire: ", isPressed));
+        hit = Physics.Raycast(root.position, root.forward, out RaycastHit hitInfo, hitScanRange, layerMask);
+
+        if (hit)
+        {
+            Debug.Log($"{hitInfo.point} - {hitInfo.transform.name}");
+        }
     }
 
     private void OnDisable()

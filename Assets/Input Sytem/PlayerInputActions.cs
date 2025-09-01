@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputActions : MonoBehaviour
 {
-    public static Action<bool> OnFireInput;
+    public static Action OnFireInput;
 
     [Header("Character Input Values")]
     public Vector2 move;
@@ -31,17 +31,18 @@ public class PlayerInputActions : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        jump = context.ReadValueAsButton();
+        jump = context.performed;
     }
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        sprint = context.ReadValueAsButton();
+        sprint = context.performed;
     }
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        OnFireInput?.Invoke(context.ReadValueAsButton());
+        if (context.performed)
+            OnFireInput?.Invoke();
     }
 
     //-------------------------
